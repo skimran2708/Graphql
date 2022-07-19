@@ -1,0 +1,60 @@
+query GetAllUsers {
+  users {
+    id
+    firstName
+    lastName
+    email
+    password
+    quotes {
+      text
+      by
+    }
+  }
+}
+
+query GetUserById($userId: Int!) {
+  user(id: $userId) {
+    id
+    firstName
+    lastName
+    email
+    password
+    quotes {
+      text
+      by
+    }
+  }
+}
+
+query GetAllQuotes {
+  quotes {
+    text
+    by
+  }
+}
+
+query GetQuoteByUserId($userId: Int!) {
+  userQuote(userId: $userId) {
+    text
+    by
+  }
+}
+
+mutation CreateUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+  createUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+    id
+    firstName
+    lastName
+    email
+  }
+}
+
+mutation SignIn($singnInUserEmail: String!, $singnInUserPassword: String!) {
+  singnInUser(email: $singnInUserEmail, password: $singnInUserPassword) {
+    token
+  }
+}
+
+mutation CreateQuote($text: String!) {
+  createQuote(text: $text)
+}
