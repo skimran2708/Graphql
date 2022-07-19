@@ -1,0 +1,50 @@
+TOMCAT
+- conf/server.xml : <Connector port=8080> request is recieved
+- conf/web.xml deploy & config. web apps.
+- logs/
+- webapps/
+-/bin ----- startup.sh &shutdown.sh
+
+jar -cvf  app.war *
+
+
+APACHE WEB SERVER
+- etc/httpd/conf/httpd.conf : Listen 80, Servername app:80, DocumentRoot "path", <virtualhost>
+
+
+/var/log/mongodb/mongod.log
+
+
+
+docker run nginx(image_name)  ==>  starts a container go to docker hub and pull the image if not found    (RUNNING THE CONTAINER IN ATTACHED MODE: Nothing can be done in consoe till stop)
+
+docker ps   ==> list of containers
+docker ps -a   ==> all containers stopped or running
+docker stop nginx(container_id/name)   ==> stop the container
+docker rm nginx(container_id/name)   ==> remove the stopped container
+docker images   ==> list of docker images
+docker rmi nginx   ==> delete the docker image (reember it is not running/in a container)
+docker pull nginx   ==>  just pull image and not run immediately
+
+docker exec distracted_mcclintock(container_name) cat /etc/hosts  ==>  prints the contents of a file which is running container/executes command on container
+docker run -d nginx ==> RUNS IN DETACH MODE: console will back 
+to attach back type ==>  docker attach a043d(contaniner_id)
+
+
+docker run redis:4.0  ==> tags for version
+docker run -i kodecloud/prompt  ==>  interavtive mode for input
+docker run -it kodecloud/prompt  ==>  interavtive with terminal mode for input
+docker run -p 80:5000 webapp  ===>  maps container 5000 port of docker host to 80 port of user port
+docker run -v /opt/datadir:/var/lib/mysql mysql  ==>  ll
+docker inspect conainer_name  ==>  returns details in json format
+docker logs conainer_name
+docker run --name container_name -d image_name
+
+docker build . -t image_name  ===>  Run this command in dir where dockerfile is present
+docker run -e APP_COLOR=blue docker_image   ===>   os.environ.get('APP_COLOR') inside docker file
+
+docker run -d --name=redis_container redis_image
+docker run -d --name=vote -p 5000:80 --link redis:redis_container
+
+docker run -v volume_name:/var/lib/mysql mysql_image  ==> volume mounting
+docker run -v /data/mysql:/var/lib/mysql mysql_image  ==>  bind mounting
